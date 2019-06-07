@@ -1,7 +1,7 @@
 <suite name="Suite1" verbose="1">
     <test name="Regression1">
         <packages>
-            <package name="test.sample" />
+            <package name="io.socialtech" />
         </packages>
     </test>
 </suite>

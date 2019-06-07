@@ -46,7 +46,6 @@ public class ProductDetailsPage extends AbstractPage {
             info.put(property.get(i).text(), value.get(i).text());
         }
         setDetails(info);
-        System.out.println(info.toString());
     }
 
     public String getValueByProperty(String property){
