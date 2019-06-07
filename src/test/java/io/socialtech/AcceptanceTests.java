@@ -1,10 +1,9 @@
 package io.socialtech;
 
 import io.socialtech.api.TempMailService;
-import org.testng.annotations.BeforeClass;
+import io.socialtech.pages.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import io.socialtech.pages.*;
 
 import java.util.Map;
 
@@ -13,15 +12,10 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class AcceptanceTests {
+public class AcceptanceTests extends BaseTest{
 
-    public static final String USER_NAME = "Chubakabra";
-    public static final String USER_PASS = "Z1111111";
-
-    @BeforeClass
-    public static synchronized void setUp() {
-        Conf.readProperties();
-    }
+    public static final String USER_NAME = "Чупакабра";
+    public static final String USER_PASS = "Z11111111";
 
     @Test
     public void userRegistrationTest() {
@@ -55,10 +49,10 @@ public class AcceptanceTests {
         productPage.openProductDetails();
 
         ProductDetailsPage detailsPage = new ProductDetailsPage();
-        detailsPage.getAllInfo();
-        assertThat(detailsPage.getValueByProperty("Вес, г"), equalTo(weight));
-        assertThat(detailsPage.getValueByProperty("Диагональ экрана"), equalTo(display));
-        assertThat(detailsPage.getValueByProperty("Оперативная память"), equalTo(memory));
+        detailsPage.readAllCharacteristics();
+        assertThat("Вес телефона отличается либо отсутствует", detailsPage.getValueByProperty("Вес, г"), equalTo(weight));
+        assertThat("Диагональ телефона отличается либо отсутствует", detailsPage.getValueByProperty("Диагональ экрана"), equalTo(display));
+        assertThat("Память телефона отличается либо отсутствует", detailsPage.getValueByProperty("Оперативная память"), equalTo(memory));
     }
 
     @DataProvider

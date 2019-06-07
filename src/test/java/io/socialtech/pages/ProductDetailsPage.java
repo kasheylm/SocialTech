@@ -1,13 +1,16 @@
 package io.socialtech.pages;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class ProductDetailsPage extends AbstractPage {
 
@@ -36,13 +39,14 @@ public class ProductDetailsPage extends AbstractPage {
     @FindBy(xpath="//td[contains(@class,'feature-t-cell')][2]")
     private ElementsCollection value;
 
-    public void getAllInfo(){
+    public void readAllCharacteristics(){
         table.shouldHave(CollectionCondition.sizeGreaterThan(MINIMUM_TABLE_SIZE));
         HashMap<String, String> info = new HashMap<>();
         for (int i = 0; i < property.size() ; i++) {
             info.put(property.get(i).text(), value.get(i).text());
         }
         setDetails(info);
+        System.out.println(info.toString());
     }
 
     public String getValueByProperty(String property){
